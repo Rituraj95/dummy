@@ -23,7 +23,7 @@ function UpdateModal({ open, onClose, row }) {
             try {
 
                 setLoad(true)
-                await axios.put("http://localhost:4000/", { ...values, _id: row._id })
+                await axios.put("/", { ...values, _id: row._id })
                 setLoad(false)
                 onClose();
             } catch (error) {

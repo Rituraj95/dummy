@@ -12,7 +12,7 @@ function DeleteModal({ open, onClose, row }) {
         try {
             onClose();
             setLoad(true)
-            await axios.delete(`http://localhost:4000/${row._id}`)
+            await axios.delete(`/${row._id}`)
             setLoad(false)
         } catch (error) {
             onClose();

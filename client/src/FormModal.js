@@ -23,7 +23,7 @@ function FormModal({ open, onclose }) {
             try {
 
                 setLoad(true)
-                await axios.post("http://localhost:4000/", values)
+                await axios.post("/", values)
                 resetForm({
                     values: {
                         name: "",
