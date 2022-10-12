@@ -16,10 +16,23 @@ mongoose.connect(process.env.DB_CONNECTION).then(() => {
     console.log(err.message);
 })
 
+//heroku
+if (process.env.NODE_ENV === 'production') {
+
+}
+
+
+
 
 app.get('/data', async (req, res) => {
-    const data = await User.find()
-    res.send(data)
+    try {
+        const data = await User.find()
+        res.send(data)
+    }
+    catch (err) {
+        console.log(err)
+        sendStatus(403)
+    }
 })
 
 app.post("/", async (req, res) => {
