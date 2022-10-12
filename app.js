@@ -3,21 +3,21 @@ const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
 const { User } = require('./src/schemas/userSchema')
-
+require('dotenv').config()
 app.use(express.urlencoded({
     extended: false
 }))
 app.use(cors())
 app.use(express.json())
-const DB = 'mongodb+srv://ankit:ankit501@cluster0.56wpfu7.mongodb.net/?retryWrites=true&w=majority'
-mongoose.connect(DB).then(() => {
+
+mongoose.connect(process.env.DB_CONNECTION).then(() => {
     console.log("db connected")
 }).catch((err) => {
     console.log(err.message);
 })
 
 
-app.get('/', async (req, res) => {
+app.get('/data', async (req, res) => {
     const data = await User.find()
     res.send(data)
 })
@@ -43,17 +43,27 @@ app.post("/", async (req, res) => {
 })
 
 app.delete("/:id", async (req, res) => {
-    console.log("Invoked")
     try {
         const id = req.params.id
-        console.log(req.body)
         const result = await User.findByIdAndDelete(id);
         // res.sendStatus(200)
         res.json(result)
     }
     catch (err) {
         res.sendStatus(403)
-        console.log(err.message)
+    }
+})
+
+app.put("/", async (req, res) => {
+    console.log("updaterequested")
+    console.log(req.body)
+    const id = req.body._id;
+    try {
+        await User.findByIdAndUpdate(id, req.body)
+        res.sendStatus(200)
+    }
+    catch (err) {
+        res.sendStatus(403)
     }
 })
 
