@@ -18,7 +18,7 @@ mongoose.connect(process.env.DB_CONNECTION).then(() => {
 
 //heroku
 if (process.env.NODE_ENV === 'production') {
-
+    app.use(express.static('client/build'))
 }
 
 
