@@ -53,6 +53,7 @@ function App() {
         <div className='button__container'>
           <Button variant="contained" onClick={() => { setisopen(true) }} endIcon={<AddIcon />}>Add Data</Button>
           <Button variant="contained" endIcon={<MarkunreadIcon />} onClick={handleSend} >Send</Button>
+          <h2>Thisis good</h2>
         </div>
         <FormModal open={isopen} onclose={() => { setisopen(false) }} />
       </div>
