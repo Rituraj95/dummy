@@ -54,7 +54,8 @@ function App() {
           <Button variant="contained" onClick={() => { setisopen(true) }} endIcon={<AddIcon />}>Add Data</Button>
           <Button variant="contained" endIcon={<MarkunreadIcon />} onClick={handleSend} >Send</Button>
           <h2>Thisis good</h2>
-          <h3>This is my version<h3/>
+          <h3>This is better heading</h3>
+          <h3>This is my version</h3>
         </div>
         <FormModal open={isopen} onclose={() => { setisopen(false) }} />
       </div>
